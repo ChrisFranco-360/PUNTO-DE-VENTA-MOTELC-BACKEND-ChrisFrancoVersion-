@@ -16,6 +16,12 @@ namespace MTLCRISTALVK18BACK.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Habitaciones>>> GetHabitaciones()
+        {
+            return await _context.Habitaciones.ToListAsync();
+        }
+
         [HttpGet("{numhab}")]
         public async Task<IActionResult> GetHabitacion(int numhab)
         {
@@ -50,6 +56,51 @@ namespace MTLCRISTALVK18BACK.Controllers
 
             await _context.SaveChangesAsync();
             return Ok(new { success = true });
+        }
+        [HttpPut("{idHbtn}")]
+        public async Task<IActionResult> PutHabitacion(int idHbtn, Habitaciones habitacion)
+        {
+            if (idHbtn != habitacion.IdHbtn)
+            {
+                    return BadRequest();
+            }
+
+            _context.Entry(habitacion).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HabitacionExists(idHbtn))
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
+        [HttpDelete("{idHbtn}")]
+        public async Task<IActionResult> DeleteHabitacion(int idHbtn)
+        {
+            var habitacion = await _context.Habitaciones.FindAsync(idHbtn);
+
+            if (habitacion == null)
+            {
+                return NotFound();
+            }
+
+            _context.Habitaciones.Remove(habitacion);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        private bool HabitacionExists(int idHbtn)
+        {
+            return _context.Habitaciones.Any(h => h.IdHbtn == idHbtn);
         }
     }
 }
