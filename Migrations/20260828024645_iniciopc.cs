@@ -4,7 +4,7 @@
 
 namespace MTLCRISTALVK18BACK.Migrations
 {
-    public partial class Init : Migration
+    public partial class iniciopc : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace MTLCRISTALVK18BACK.Migrations
                     TipoCamahab = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Folioordenhab = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AcargoUserMTL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TurnoUserMTL = table.Column<int>(type: "int", nullable: false)
+                    TurnoUserMTL = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MTLCRISTALVK18BACK.Migrations
 {
     [DbContext(typeof(MTLCRISTALContexts))]
-    [Migration("20250421202020_Init")]
-    partial class Init
+    [Migration("20260828024645_iniciopc")]
+    partial class iniciopc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,7 @@ namespace MTLCRISTALVK18BACK.Migrations
                     b.Property<string>("Tipohab")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TurnoUserMTL")
+                    b.Property<int?>("TurnoUserMTL")
                         .HasColumnType("int");
 
                     b.HasKey("IdHbtn");
